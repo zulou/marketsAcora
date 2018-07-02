@@ -28,8 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1','*','localhost']
 
 
-# Application definition
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -145,3 +146,21 @@ REST_FRAMEWORK = {
 
 
 STATIC_URL = '/static/'
+
+
+# Caches
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 60 * 30,
+    },
+}
+
+COSTLY_CACHE_TTL = 60 * 60 * 24
+
+BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '..')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+WHITENOISE_STATIC_PREFIX = STATIC_URL
