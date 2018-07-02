@@ -9,7 +9,7 @@
       "value": "review"
     },
     "DJANGO_SETTINGS_MODULE": {
-      "value": "marketsAdm.settings.heroku"
+      "value": "marketAdm.settings.heroku"
     },
     "SECRET_TOKEN": {
       "generator": "secret"
@@ -62,7 +62,7 @@
       },
       "scripts": {
 				"test-setup": "pip install -r requirements/test-settings.txt",
-        "test": "cd marketsAcora ;python manage.py test --settings=marketsAdm.settings.test-settings --keepdb"
+        "test": "cd marketsAcora ;python manage.py test --settings=marketAdm.settings.test-settings --keepdb"
       }
     }
   }
