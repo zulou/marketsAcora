@@ -1,0 +1,104 @@
+<div class="row">
+    {% csrf_token %}
+
+
+    <div class="form-group col-sm-2">
+        <label for="dni">DNI</label>
+        <input type="text" class="form-control dni" id="dni_auto" name="dni" placeholder="12345678">
+    </div>
+
+    <div class="form-group col-sm-5">
+        <label for="firstname">Nombres:</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="12345678">
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="lastname">Apellidos:</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="12345678">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="cellphone">Celular:</label>
+        <input type="text" class="form-control" id="cellphone" name="cellphone" placeholder="12345678">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="email">Email:</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="12345678">
+    </div>
+
+<hr/>
+    <div class="form-group col-sm-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="market">Mercado</label>
+            </div>
+            <select class="custom-select" id="market">
+                <option selected>seleccionar </option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group col-sm-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="section">Seccion</label>
+            </div>
+            <select class="custom-select" id="section">
+                <option selected>seleccionar</option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group col-sm-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="point">Puesto</label>
+            </div>
+            <select class="custom-select" id="point">
+                <option selected>seleccionar</option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group col-sm-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="point">Inicio</label>
+            </div>
+            <input type="date" class="form-control" id="inicio" name="date_consession_start" >
+        </div>
+    </div>
+
+    <div class="form-group col-sm-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="point">Fin</label>
+            </div>
+            <input type="date" class="form-control" id="fin" name="date_consession_end" >
+        </div>
+    </div>
+     <div class="form-group col-sm-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="point">Tipo Pago</label>
+            </div>
+            <select class="custom-select" id="tipo_pago">
+                <option selected>seleccionar</option>
+                <option value="1">consecion</option>
+                <option value="2">consecion + servicios </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group col-sm-3">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="point">Costo S/. </label>
+            </div>
+            <input type="text" class="form-control" id="costo" name="price_monthly" placeholder="12345678">
+        </div>
+    </div>
+
+    <div id="validar" class="text-danger form-group col-sm-12"></div>
+</div>

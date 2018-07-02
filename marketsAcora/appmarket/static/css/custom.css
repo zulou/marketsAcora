@@ -1,0 +1,39 @@
+#page-A4 {
+    width: 209mm;
+    height: 296mm;
+    padding: 10mm 10mm 20mm 20mm;
+    border: 0;
+    background: #fff;
+    margin: 0;
+}
+
+#page {
+    border: 3px solid #D2D2D2;
+    background: #000000;
+    margin: 0;
+}
+
+#list-persona_filter {
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+input {
+    /*text-transform:uppercase;*/
+}
+
+.imprimir strong, .imprimir i{
+    color: black;
+    font-size: 14px;
+}
+.imprimir td{
+    padding: 2px 5px 2px 5px;
+    /*border: #222222 solid;*/
+    /*border: 2px solid #444444;*/
+    /*border-radius: 8px;*/
+}
+.membrete{
+    margin-left: -10mm;
+    /*padding-left: -10px;*/
+}

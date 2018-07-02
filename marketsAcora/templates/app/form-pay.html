@@ -1,0 +1,52 @@
+<div class="row">
+    {% csrf_token %}
+
+
+
+<hr/>
+    <div class="form-group col-sm-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="market">DNI</label>
+            </div>
+                <input type="hidden" class="form-control" id="id_pay" name="date_consession_start" readonly >
+                <input type="hidden" class="form-control" id="voucher" name="voucher" readonly >
+                <input type="text" class="form-control" id="dni_pay" name="date_consession_start" readonly >
+        </div>
+    </div>
+
+    <div class="form-group col-sm-8">
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="market">Nombre:</label>
+            </div>
+
+                <input type="text" class="form-control" id="full_name" name="date_consession_start" readonly>
+
+
+        </div>
+    </div>
+
+    <div class="form-group col-sm-8">
+        <div class="input-group mb-6">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="market">Puesto</label>
+            </div>
+
+                <input type="text" class="form-control" id="concession" name="consession" readonly >
+
+
+        </div>
+    </div>
+
+    <div class="form-group col-sm-4">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="point">Monto S/. </label>
+            </div>
+            <input type="text" class="form-control" id="price" name="price_monthly" placeholder="000">
+        </div>
+    </div>
+
+
+</div>

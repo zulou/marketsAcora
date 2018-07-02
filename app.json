@@ -1,0 +1,69 @@
+{
+  "name": "marketsAdm",
+  "description": "Django heroku starter kit",
+  "scripts": {
+    "postdeploy": "cd marketsAcora ; python manage.py migrate --run-syncdb"
+  },
+  "env": {
+    "ENVIRONMENT": {
+      "value": "review"
+    },
+    "DJANGO_SETTINGS_MODULE": {
+      "value": "marketsAdm.settings.heroku"
+    },
+    "SECRET_TOKEN": {
+      "generator": "secret"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    },
+    "clock": {
+      "quantity":1,
+      "size": "free"
+    }
+  },
+  "stack": "heroku-16",
+  "addons": [
+    "heroku-postgresql"
+    
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+	"environments": {
+    "test": {
+      "formation": {
+        "test": {
+          "quantity": 1,
+          "size": "Standard-1x"
+        }
+      },
+      "env" : {
+        "SENTRY_DSN": "fake_sentry_dsn",
+        "AWS_ACCESS_KEY_ID": "fake_aws_access_key_id",
+        "AWS_STORAGE_BUCKET_NAME": "fake_storage_bucket_name",
+        "AWS_SECRET_ACCESS_KEY": "fake_aws_secret_key",
+        "FIREBASE_TOKEN": "fake_firebaso_token",
+        "FIREBASE_APP_NAME": "fake_firebase_app_name",
+        "DJANGO_SETTINGS_MODULE": "wtfbox.settings.test",
+        "HEROKU_API_KEY": "fake_heroku_api_key",
+      	"HEROKU_APP_NAME": "fake_heroku_app_name",
+      	"POINTDNS_API_KEY": "fake_pointdns_key",
+        "POINTDNS_USER": "fake_point_dns_user",
+      	"ENVIRONMENT": "review",
+      	"ALLOWED_HOSTS": "fake_allowed_hosts",
+      	"FIREBASE_SENDER_ID": "fake_sender_id",
+        "FIREBASE_API_TOKEN": "fake_firebase_token"
+      },
+      "scripts": {
+				"test-setup": "pip install -r requirements/test-settings.txt",
+        "test": "cd marketsAcora ;python manage.py test --settings=marketsAdm.settings.test-settings --keepdb"
+      }
+    }
+  }
+}

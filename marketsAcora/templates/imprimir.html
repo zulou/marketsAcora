@@ -1,0 +1,132 @@
+{% extends 'template/index.html' %}
+{% load staticfiles %}
+
+{% block title %} IMPRIMIR {% endblock %}
+
+{% block navigation %}
+    <br>
+{% endblock %}
+
+
+
+
+{% block content %}
+    <section class="">
+        <div class="container-fluid">
+            <div class="form-group btn-group-lg text-center col-sm-12">
+                <button type="button" class="btn btn-outline-primary" onclick="imprimirPage('#page');">Imprimir</button>
+                <button type="button" class="btn btn-outline-success" onclick="descargarPdf('#page-A4');">Descargar
+                </button>
+                <button id="quitar" type="button" class="btn btn-outline-danger" onclick="quitarMembrete('#membrete');">
+                    Quitar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    {% if voucher %}
+
+
+
+    <section id="imprimir">
+        <div class="container-fluid text-center">
+        <span id="page">
+            <div id="page-A4" class="text-left">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+          <div class="col-sm-12  "> <h1 align="center"><strong><u>Comprobante de Pago</u></strong></h1></div>
+      </div>
+
+    <div class="row">
+        <div class="col-sm-8"><h3><strong>Municipalidad Distrital de Acora</strong></h3><h5><strong>Ruc:202011212</strong></h5></div>
+        <div class="col-sm-4"><strong>Numero:</strong>{{ voucher.id }}<br><strong>Fecha:</strong></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8"><h5><strong>Dni: {{ voucher.consession.clients.dni }}<br> Nombre: {{ voucher.consession.clients.firstname }} {{ voucher.consession.clients.lastname }}<br>Puesto:{{ voucher.consession.points.sections.markets.name }}  / {{ voucher.consession.points.sections.name }} / {{ voucher.consession.points.point_code }}<br></strong></h5></div>
+      <div class="col-sm-4"></div>
+
+    </div>
+</div>
+
+      <!-- /.row -->
+
+      <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Item</th>
+            <th>Und.</th>
+
+            <th>Descripción</th>
+            <th>Subtotal s/.</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>1</td>
+
+            <td>UND.</td>
+            <td>Alquiler de Stand Comercial</td>
+            <td>{{ voucher.voucher_detail.price_point }}</td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+        <!-- /.col -->
+    </div>
+          </div>
+      <!-- /.row -->
+        {% else %}
+{%endif%}
+
+
+
+
+
+
+    </div>
+    </div>
+    </section>
+
+{% endblock %}
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            // Instrucciones a ejecutar al terminar la carga
+            $(document).on("keydown", function (event) {
+                if (event.ctrlKey && event.which === 80) {
+                    imprimirPage('#page');
+                    return false;
+                }
+            });
+
+            $('i').dblclick(function (e) {
+                $(this).addClass('').attr('contenteditable', 'true');
+            });
+
+            $('i').blur(function (e) {
+                $(this).show().attr('contenteditable', 'false');
+            })
+        });
+
+
+        imprimirPage = function (nameId) {
+            $(document).off("keydown");
+            var tmp = $("body").html();
+            $("body").html($(nameId).html());
+            window.print();
+            $("body").html(tmp);
+        };
+
+        descargarPdf = function (nameId) {
+            var doc = new jsPDF('p', 'pt', 'A4');
+            doc.addHTML($(nameId)[0], 0, -7, function () {
+                doc.save('historiaClinica.pdf');
+            });
+        };
+
+    </script>
+{% endblock %}

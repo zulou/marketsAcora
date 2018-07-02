@@ -1,0 +1,68 @@
+<div class="row">
+    {% csrf_token %}
+    <div class="form-group col-sm-4">
+        <label for="ap_paterno" class="col-form-label">Primer Apellido</label>
+        <input type="text" class="form-control border-primary" name="ap_paterno" placeholder="Primer Apellido">
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+      <label for="ap_materno" class="col-form-label">Segundo Apellido</label>
+        <input type="text" class="form-control border-primary" name="ap_materno" placeholder="Segundo Apellido">
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="nombre" class="col-form-label">Nombres</label>
+        <input type="text" class="form-control border-primary" name="nombre" placeholder="Nombres">
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="dni" class="col-form-label">DNI</label>
+        <input type="text" class="form-control border-primary" name="dni" placeholder="12345678" required>
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="fecha_nacimiento" class="col-form-label">Fecha de Nacimiento</label>
+        <input type="date" class="form-control border-primary" name="fecha_nacimiento" placeholder="dd/mm/aaaa">
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="lugar_nacimiento" class="col-form-label">Lugar de Nacimiento</label>
+        <input type="text" class="form-control border-primary" name="lugar_nacimiento" placeholder="distrito-Provincia-pais">
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="sexo" class="col-form-label">Sexo</label>
+        <select class="form-control border-primary" name="sexo">
+            <option value="">SELECCIONE</option>
+            <option value="FEMENINO">FEMENINO</option>
+            <option value="MASCULINO">MASCULINO</option>
+        </select>
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="celular" class="col-form-label">Celular</label>
+        <input type="text" class="form-control border-primary" name="celular" placeholder="999 999 999">
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="correo_electronico" class="col-form-label">Correo Electronico</label>
+        <input type="email" class="form-control border-warning" name="correo_electronico" placeholder="ejemplo@ejemplo.com">
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="direccion" class="col-form-label">Direccion</label>
+        <input type="text" class="form-control border-primary" name="direccion" placeholder="Jr. tu direcion">
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="ocupacion" class="col-form-label">Ocupacion</label>
+        <input type="text" class="form-control border-warning" name="ocupacion" placeholder="Trabajador">
+        <small class="form-text"></small>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="anterior" class="col-form-label">Historia Clinica</label>
+        <input type="number" class="form-control border-warning" name="anterior" placeholder="000">
+        <small class="form-text"></small>
+    </div>
+    <div id="validar" class="text-danger form-group col-sm-12"></div>
+</div>

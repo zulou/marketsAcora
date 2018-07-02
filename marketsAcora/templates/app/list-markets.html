@@ -1,0 +1,434 @@
+{% extends 'template/index.html' %}
+{% block title %} Administración Acora {% endblock %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block content %}
+    <section class="dashboard-header">
+    <div class="container-fluid">
+        <div class="form-group col-sm-12">
+            <button type="button" class="btn btn-outline-primary" id="btn_newPersona"><i class="fa fa-plus"></i> Agregar</button>
+            <!-- Modal -->
+<div class="modal fade" id="newPersona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Nueva concesión</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form id="form_persona">
+              {% include 'app/form-concession.html' %}
+      <div class="modal-footer">
+        <button type="submit" id="guardar_co"class="btn btn-outline-primary">Guardar</button>
+        <button type="button" id="generar" class="btn btn-outline-warning">Generar N° H.C.</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="pay_concession" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Registrar Pago</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form id="pay_concession" class="form_persona">
+              {% include 'app/form-pay.html' %}
+      <div class="modal-footer">
+        <button type="submit" id="button-pay" class="btn btn-outline-primary">Pagar</button>
+
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+    </div>
+
+
+
+    <div class="container-fluid">
+        <table id="list-persona" class="display table table-responsive">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Dni</th>
+                    <th>Cliente</th>
+                    <th>Mercado/seccion</th>
+                    <th>NºPuesto</th>
+                    <th>s/.Precio</th>
+                    <th>Inicio concesión</th>
+                    <th>Fin concesión</th>
+                    <th>Monto</th>
+                    <th>EDITAR</th>
+                    <th>VER</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    </section>
+{% endblock %}
+{% block js %}
+
+ <script>
+    var dni_id=[];
+    var dni_autocomplete=[];
+    var auxdni=0;
+    var auxid=0;
+    var dni_auto=0;
+    var id_persona=0;
+
+    var id_point=0;
+    var date_consession_start=0;
+    var date_consession_end=0;
+    var type_sale=0;
+
+    $("#guardar_co").click(function (e) {
+        e.preventDefault();
+    id_point=parseInt($("#point").val());
+    id_date_start=$("#inicio").val();
+    id_date_end=$("#fin").val();
+    type_sale=parseInt($("#tipo_pago").val());
+    price_monthly=parseInt($("#tipo_pago").val());
+
+    var test=$('#form_persona').serializeArray();
+    var csrf=$('#form_persona input[name=csrfmiddlewaretoken]').val();
+    console.log(test);
+    var datos;
+    datos={
+        csrfmiddlewaretoken:csrf,
+        clients:id_persona,
+        points:id_point,
+        date_consession_start:'2018-05-05',
+        date_consession_end:'2018-05-05',
+        price_monthly:price_monthly,
+        point_name:'aaaaaaa',
+        sale_type:type_sale
+
+    };
+    console.log(datos);
+    $.ajax({
+        url: "http://127.0.0.1:8000/api/Concession/",
+        type: "POST",
+        dataType: "json",
+        data:datos,
+        success: function(data) {
+            alert(" se creo con èxito :)");
+            location.reload();
+        }
+      });
+
+    });
+
+    function autocomplete_persona(id_persona){
+        $.ajax({
+        url: "http://127.0.0.1:8000/api/Clients/"+id_persona+"/",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            console.log(data);
+            //console.log(data.id);
+            $("#firstname").val(data.firstname);
+            $("#lastname").val(data.lastname);
+            $("#cellphone").val(data.cellphone);
+            $("#email").val(data.email);
+
+
+
+        }
+      });
+    }
+
+
+$('#market').change(function(e){
+    var market=$("#market").val();
+    $('#section').empty();
+    $('#point').empty();
+    $("#section").append("<option >"+'selecionar'+"</option>");
+    $("#point").append("<option >"+'selecionar'+"</option>");
+   $.ajax({
+        url: "http://127.0.0.1:8000/api/Sections.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+
+            for (var key in data){
+
+
+                if(data[key].markets==market){
+                    $("#section").append("<option  value='"+data[key].id+"'>"+data[key].name+"</option>");
+                }
+
+            }
+
+        }
+      });
+});
+
+
+
+ $('#section').change(function(e){
+    var section= $('#section').val();
+   $.ajax({
+        url: "http://127.0.0.1:8000/api/Points.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+        $("#point").empty();
+        for (var key in data ){
+            console.log(data[key]);
+            if(data[key].sections==section){
+                //console.log(data[key].sections);
+            $("#point").append("<option  value='"+data[key].id+"'>"+data[key].point_code+"</option>");
+
+            }
+        }
+
+
+
+
+        }
+      });
+});
+
+
+$('#btn_newPersona').click(function (e) {
+    e.preventDefault();
+
+
+    $(".dni").autocomplete({
+    source: dni_autocomplete,
+    select:function(event,ui){
+    dni_auto=$("#dni_auto").val();
+    console.log(dni_id);
+    for( var key in dni_id){
+        if(dni_id[key][dni_auto]!=null){
+            id_persona=dni_id[key][dni_auto];
+            //console.log(dni_id[key][dni_auto]);
+            autocomplete_persona(id_persona);
+
+        }
+        else{
+
+        }
+
+    }
+
+
+
+    }
+     });
+$('#newPersona').modal('show');
+$( ".dni" ).autocomplete( "option", "appendTo", "#exampleModalLabel" );
+});
+
+ $.ajax({
+        url: "http://127.0.0.1:8000/api/Clients.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+
+            $.each(data,function (index,element) {
+                dni_autocomplete.push(element.dni);
+                auxdni=element.dni;
+                auxid=element.id;
+                var n= auxdni.toString();
+                dni_id.push({
+                   [n]:auxid
+
+               });
+            });
+            console.log(dni_autocomplete);
+            //console.log(dni_id);
+        }
+      });
+
+var dataset = [];
+{% if conseciones %}
+
+            {%for conse in conseciones %}
+
+            dataset.push({id:"{{conse.id}}",dni:"{{conse.clients.dni}}",name:"{{conse.clients.firstname}} {{conse.clients.lastname}}- cel:{{conse.clients.cellphone}} ",sections:"{{conse.points.sections}}",points:"{{conse.points.point_code}}",price:"{{conse.price_monthly}}",date_consession_start:"{{conse.date_consession_start}}",date_consession_end:"{{conse.date_consession_end}}",paid_days_concession:"{%if conse.paid_days_concession > 0%} <p style='color:green'>El cliente pago s/. {{ conse.paid_days_concession }} </p>{%else%} <p style='color:red'>El cliente aun no pago </P>{%endif%}"});
+
+            {%endfor%}
+        {% else %}
+
+{%endif%}
+
+$(document).ready(function() {
+
+    $.ajax({
+        url: "http://127.0.0.1:8000/api/Markets.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            for( var key in data){
+                console.log(data[key].id);
+                console.log(data[key].name);
+                $("#market").append("<option  value='"+data[key].id+"'>"+data[key].name+"</option>");
+
+            }
+        }
+      });
+    var table = $('#list-persona').DataTable( {
+        "language": {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+        {#dom: "Bfrtip",#}
+        "data":dataset,
+        "aoColumns": [
+            { "data": "id" },
+            { "data": "dni" },
+            { "data": "name" },
+            { "data": "sections" },
+            { "data": "points" },
+            { "data": "price" },
+            { "data": "date_consession_start" },
+            { "data": "date_consession_end" },
+            { "data": "paid_days_concession" },
+
+            {
+            "targets": -1,
+            "data": null,
+            "defaultContent": '<button class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i> Pagar</button>'
+            },
+            {
+            "targets": -1,
+            "data": null,
+            "defaultContent": '<button class="btn btn-outline-primary btn-sm"><i class="fa fa-eye"></i> Ver</button>'
+            }
+        ],
+        "order": [[ 0, "desc" ]],
+        "pageLength": 10,
+        {#"lengthMenu": false,#}
+        "bLengthChange": false,
+        {#select: true,#}
+    } );
+
+    $('.dataTables_filter label').addClass('col-sm-12 control-label');
+    $('.dataTables_filter input').addClass('form-control');
+    {#$('.dataTables_length label').addClass('col-sm-12 control-label');#}
+    {#$('.dataTables_length select').addClass('form-control');#}
+
+    $('#list-persona tbody').on( 'click', 'button.btn-outline-warning', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+
+        console.log(data.id);
+        $("#id_pay").val(data.id);
+        $("#dni_pay").val(data.dni);
+        $("#full_name").val(data.name);
+        $("#concession").val(data.sections+"  /  "+data.points);
+        $('#pay_concession').modal('show');
+
+
+    } );
+
+    $('#list-persona tbody').on( 'click', 'button.btn-outline-primary', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        console.log(data.id);
+    } );
+
+    $("#button-pay").click(function(e){
+        e.preventDefault();
+        //var data = table.row( $(this).parents('tr') ).data();
+
+        var concession=parseInt($("#id_pay").val());
+        var csrf_pay=$('#pay_concession input[name=csrfmiddlewaretoken]').val();
+        console.log(csrf_pay);
+        var datos;
+        datos={
+            csrfmiddlewaretoken:csrf_pay,
+            consession:concession,
+            comments:"Pago por Alquiler"
+
+        };
+          $.ajax({
+        url: "http://127.0.0.1:8000/api/Voucher/",
+        type: "POST",
+        dataType: "json",
+        data:datos,
+        success: function(data) {
+            voucher_detail();
+            console.log(data);
+        }
+      });
+        function voucher_detail(){
+            //url: "http://localhost:8000/marketAdm/id_voucher/";
+            var id_voucher=0;
+            var csrf_pay=$('#pay_concession input[name=csrfmiddlewaretoken]').val();
+            var price_point=$('#price').val();
+
+
+            $.get( "http://localhost:8000/marketAdm/id_voucher/",function(data){
+                console.log(data);
+            id_voucher=data;
+            var datos={
+            csrfmiddlewaretoken:csrf_pay,
+            vouch:id_voucher,
+            price_point:price_point,
+            price_water:0,
+            price_energy:0
+          };
+
+            $.ajax({
+        url: "http://127.0.0.1:8000/api/VoucherDetail/",
+        type: "POST",
+        dataType: "json",
+        data:datos,
+        success: function(data) {
+
+        console.log("voucher detail")
+
+        }
+      });
+
+            });
+
+            //console.log(id_voucher);
+
+
+        }
+      function imprimir(){
+            
+      }
+
+    });
+
+} );
+    </script>
+{% endblock %}
