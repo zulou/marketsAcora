@@ -26,7 +26,7 @@ SECRET_KEY = '8()q*6^%#-*ombt+p*%k_cw)jevwm%9^4!b!7*0f^6v00-%$l4'
 DEBUG = True
 ALLOWED_HOSTS_STRING = os.environ.get(
     'ALLOWED_HOSTS',
-    'localhost,.herokuapp.com'
+    'localhost,.herokuapp.com,127.0.0.1',
     )
 ALLOWED_HOSTS = [domain for domain in ALLOWED_HOSTS_STRING.split(',')]
 
