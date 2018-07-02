@@ -148,3 +148,24 @@ REST_FRAMEWORK = {
 
 
 STATIC_URL = '/static/'
+
+
+
+
+# Caches
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 60 * 30,
+    },
+}
+
+COSTLY_CACHE_TTL = 60 * 60 * 24
+
+BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '..')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+WHITENOISE_STATIC_PREFIX = STATIC_URL
+
