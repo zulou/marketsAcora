@@ -25,9 +25,15 @@ SECRET_KEY = '8()q*6^%#-*ombt+p*%k_cw)jevwm%9^4!b!7*0f^6v00-%$l4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','*','localhost']
 
 
+ALLOWED_HOSTS_STRING = os.environ.get(
+    'ALLOWED_HOSTS',
+    'localhost,.herokuapp.com'
+    )
+
+
+ALLOWED_HOSTS = [domain for domain in ALLOWED_HOSTS_STRING.split(',')]
 
 # Application definition
 INSTALLED_APPS = [
