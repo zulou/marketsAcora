@@ -1,0 +1,158 @@
+fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width:auto;
+        padding:0 10px;
+        border-bottom:none;
+    }
+
+
+.ui-dialog .ui-dialog-titlebar { font-family: 'Oswald-Regular', Tahoma; font-size: 14px; }
+.windows fieldset { border-radius: 3px; border: solid 1px rgba(0,0,0,.5); padding: 5px; }
+.windows .titulo {
+	font-family: 'Oswald-Regular',Tahoma; font-size: 16px; text-align: center; margin-bottom: 10px; border-bottom: dotted 1px;
+	text-transform: uppercase;
+}
+.windows h1, .windows h2, .windows h3 { font-family: 'Oswald-Regular','Trebuchet MS', Tahoma; }
+.windows fieldset b { display: inline-block; width: 120px; position: relative; }
+.windows fieldset b i {position: absolute; right: 3px; font-style: normal; }
+.windows .divider { margin: 10px 0; width: 100%; height: 0; border-top: solid 1px #fff; border-bottom: solid 1px rgba(64,65,30,.5); /*box-shadow:  1px 1px 1px rgba(0,0,0,.8);*/ }
+
+.alerta fieldset { min-width: 380px; width: 450px; }
+.alerta .msg { display: block; min-height: 50px; overflow-y: auto; }
+.alerta .msg .icon, .alerta .msg p { float: left; }
+.alerta .msg .icon {
+	display: block; width: 64px; height: 64px; margin-right: 10px;
+	background: url(../img/icon/stop.png) center center no-repeat; background-size: 48px 48px;
+}
+.alerta .msg p { text-align: justify; width: calc(100% - 74px); }
+
+.confirmar fieldset { width: 450px; }
+.confirmar .titulo:before { content: 'Â¿'; }
+.confirmar .titulo:after { content: '?'; }
+.confirmar .mensaje { font-size: 12px; }
+.confirmar .mensaje b, .confirmar .msg p b { font-size: 12px; font-family: 'Oswald-Regular', Tahoma; }
+
+.recibo fieldset { width: 500px; max-width: 550px; }
+.nuevoCliente fieldset { width: 550px; }
+.nuevoRecibo fieldset { width: 550px; }
+.windows form { margin-top: 5px; }
+.windows form .divider {width: 100%; border-top: solid 1px rgba(255,255,255,1); margin: 10px 0 5px 0; /*border-bottom: solid 1px rgba(0,0,0,.3);*/ }
+.windows form h2 { font-family: 'Oswald-Regular',Tahoma; font-size: 14px; font-weight: normal; margin-bottom: 5px; }
+
+.windows .filaLogo { display: block; /*background: rgba(0,0,0,.4);*/ height: 55px; border-bottom: dotted 1px; }
+
+.windows .filaLogo .logo, .windows .filaLogo .slogan { float: left; display: block; }
+.windows .logo { width: 55px; }
+.windows .filaLogo .logo img { width: 50px; height: 50px; }
+.windows .filaLogo .slogan { width: calc(100% - 70px); }
+.windows .filaLogo .slogan h1, .windows .filaLogo .slogan h2,
+.windows .filaLogo .slogan h3 { font-family: 'Oswald-Regular', 'Trebuchet MS', Tahoma; font-weight: normal; }
+.windows .filaLogo .slogan { text-align: left; }
+.windows .filaLogo .slogan h1 { font-size: 13px; text-transform: uppercase; /*word-spacing: 3px;*/ font-weight: bold; }
+.windows .filaLogo .slogan h2 { font-size: 11px; }
+.windows .filaLogo .slogan h3 { font-size: 11px; }
+
+.recibo .frmRecibo { margin-top: 10px; }
+.windows .filaModal { height: 26px; line-height: 26px; width: 100%; overflow-y: auto; }
+.windows .filaModal label, .windows .filaModal b { float: left; }
+.windows .filaModal label { display: block; width: 80px; position: relative; font-family: 'Oswald-Regular', Tahoma; font-size: 12px; }
+.windows .filaModal label i { position: absolute; font-style: normal; right: 3px; }
+.windows .filaModal b {
+	border: none; border-bottom: dotted 1px rgba(25,52,65,.6);
+	width: calc(100% - 90px); padding: 2px 5px; font-size: 12px;
+	background: rgba(0,0,0,.1); display: block; height: 18px; line-height: 18px;
+	overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+/**********************************************************************************************************************************/
+.actualizarDatos fieldset { width: 470px; }
+/**********************************************************************************************************************************/
+.nvoRecibo .filaDatosRecibo, .detallePagos .filaDatosRecibo,
+.detallePagos .filaDatosRecibo { margin-top: 5px; margin-bottom: 5px; position: relative; display: block; }
+/*--------------------------------------------------------------------------------------------------------------------*/
+.nvoRecibo fieldset, .reciboPagoServicios fieldset { width: 600px; }
+.nvoRecibo .filaDatosRecibo .filaNroRecibo, .detallePagos .filaDatosRecibo .filaNroRecibo,
+.reciboPagoServicios .filaDatosRecibo .filaNroRecibo { position: absolute; width: 120px; top: -55px; right: 10px; }
+.nvoRecibo .filaDatosRecibo .filaNroRecibo b, .detallePagos .filaDatosRecibo .filaNroRecibo b,
+.reciboPagoServicios .filaDatosRecibo .filaNroRecibo b { font-family: 'Oswald-Regular', Tahoma; text-align: center; }
+.nvoRecibo .filaDatosRecibo .filaNroRecibo b span, .detallePagos .filaDatosRecibo .filaNroRecibo b span,
+.reciboPagoServicios .filaDatosRecibo .filaNroRecibo b span { color: rgba(142,40,0,1); margin-right: 10px; }
+.nvoRecibo .filaDatosRecibo .filaNroRecibo .nroRecibo, .detallePagos .filaDatosRecibo .filaNroRecibo .nroRecibo,
+.reciboPagoServicios .filaDatosRecibo .filaNroRecibo .nroRecibo { font-size: 18px; }
+.nvoRecibo .filaDatosRecibo .filaNroRecibo .fechaRecibo, .detallePagos .filaDatosRecibo .filaNroRecibo .fechaRecibo,
+.reciboPagoServicios .filaDatosRecibo .filaNroRecibo .fechaRecibo { font-size: 13px; font-weight: normal; }
+
+.nvoRecibo .filaDatosRecibo .filaModal label, .nvoRecibo .filaDatosRecibo .filaModal input[type=text],
+.nvoRecibo .filaDatosRecibo .filaModal button, .nvoRecibo .filaDatosRecibo .filaModal img,
+.reciboPagoServicios .filaDatosRecibo .filaModal label, .reciboPagoServicios .filaDatosRecibo .filaModal input[type=text],
+.reciboPagoServicios .filaDatosRecibo .filaModal button, .reciboPagoServicios .filaDatosRecibo .filaModal img { float: left; }
+
+.nvoRecibo .filaDatosRecibo .txNombreCliente,
+.reciboPagoServicios .filaDatosRecibo .txNombreCliente { border-width: 1px 0 !important; }
+
+.nvoRecibo .filaDatosRecibo .filaModal .imgAgregar,
+.reciboPagoServicios .filaDatosRecibo .filaModal .imgAgregar {
+	height: 22px; width: 22px; vertical-align: bottom; margin-left: 5px; border-radius: 50%;
+	/*box-shadow: 0 0 1px rgba(0,0,0,1);*/ background: rgba(255,255,255,1);
+	border: solid 1px rgba(0,0,0,.5); cursor: pointer;
+}
+
+.nvoRecibo .t-head, .reciboPagoServicios .t-head { height: 25px; }
+.nvoRecibo .t-body, .reciboPagoServicios .t-body { min-height: 100px; }
+/*--------------------------------------------------------------------------------------------------------------------*/
+.detallePagos fieldset { width: 600px; }
+.detallePagos .filaDatosRecibo h1 {
+	font-size: 18px; position: absolute; top: -60px; right: 10px; text-align: center;
+	text-transform: uppercase;
+}
+.detallePagos .filaDatosRecibo h1 span { font-size: 14px; font-weight: normal; text-transform: none; }
+/**********************************************************************************************************************************/
+.nuevoRecibo .filaModal label, .nuevoRecibo .filaModal .colModal { float: left; }
+.nuevoRecibo .filaModal .colModal { width: calc(100% - 120px); /*background: rgba(0,0,0,.5);*/}
+.nuevoRecibo .detalleConcepto { border-radius: 3px; margin-top: 5px; }
+.nuevoRecibo .filaModal .colModal input[type=text] { float: left; }
+.nuevoRecibo .filaModal .colModal .t4 { width: calc((100% - 10px)/4); }
+.nuevoRecibo .filaModal .colModal .t34 { width: calc((100% - 30px)*3/4); }
+/**********************************************************************************************************************************/
+.detalleRecibo fieldset { width: 550px; }
+/**********************************************************************************************************************************/
+.recibo .filaConcepto { border: solid 1px rgba(0,0,0,.2); border-radius: 3px; }
+.recibo .spaceV {}
+.recibo .filaConcepto .importe { /*width: 70px;*/ }
+.recibo .filaConcepto .importe:before { content: 'S/ '; font-family: 'Oswald-Regular', Tahoma; }
+.recibo .filaConcepto .importe:after { content: ''; margin-right: 5px; }
+.recibo .filaConcepto input[type=text] { width: 30%; border: solid 1px rgba(0,0,0,.4); border-radius: 3px; padding: 2px 5px; margin: 1px 0; }
+.recibo .filaConcepto table thead tr { background: rgba(0,0,0,.4);font-family: 'Oswald-Regular', 'Arial Narrow', Tahoma; }
+.recibo .filaConcepto table .dscTotal { text-align: center; font-family: 'Oswald-Regular', Tahoma; font-size: 1em; }
+.recibo .filaConcepto table .total { text-align: right; width: 70px; }
+.recibo .filaConcepto table .cuotas { text-align: center; width: 20%; }
+.recibo .filaConcepto table .concepto { /*width: 40%;*/ }
+.recibo .frmRecibo h3 { font-family: 'Oswald-Regular', Tahoma; margin-top: 10px; text-transform: uppercase; font-weight: normal; }
+.recibo .frmRecibo #pTotal { font-weight: bold; font-size: 1.5em; width: 120px; text-align: right; }
+/**********************************************************************************************************************************/
+.updPassword .filaModal input[type=password], .datosPersonales .filaModal input[type=password] {
+	display: inline-block;border: solid 1px rgba(0,0,0,.5);
+	font-size: 1em; height: 22px; padding: 1px 5px;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+.datosPersonales fieldset h1 { border-bottom: dotted 1px rgba(0,0,0,.5); text-align: center; text-transform: uppercase; }
+.datosPersonales fieldset h3 { font-weight: normal; margin-bottom: 5px; }
+.datosPersonales .filaModal img { height: 22px; vertical-align: bottom; cursor: pointer; }
+.datosPersonales .filaModal .btnImg {
+	border-radius: 3px; padding: 1px 1px;
+	background: -moz-linear-gradient(top, rgba(87,0,0,.3) 0%, rgba(255,255,255,.8) 100%);
+	background: -webkit-linear-gradient(top, rgba(87,0,0,.3) 0%, rgba(255,255,255,.8) 100%);
+	background: linear-gradient(top, rgba(87,0,0,.3) 0%, rgba(255,255,255,.8) 100%);
+	box-shadow: 0 0 2px rgba(0,0,0,1); /*border: solid 1px rgba(0,0,0,.4);*/
+}

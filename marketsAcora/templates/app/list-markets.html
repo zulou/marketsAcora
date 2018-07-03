@@ -113,8 +113,8 @@
         csrfmiddlewaretoken:csrf,
         clients:id_persona,
         points:id_point,
-        date_consession_start:'2018-05-05',
-        date_consession_end:'2018-05-05',
+        date_consession_start:id_date_start,
+        date_consession_end:id_date_end,
         price_monthly:price_monthly,
         point_name:'aaaaaaa',
         sale_type:type_sale
@@ -397,6 +397,7 @@ $(document).ready(function() {
             $.get( "http://localhost:8000/marketAdm/id_voucher/",function(data){
                 console.log(data);
             id_voucher=data;
+
             var datos={
             csrfmiddlewaretoken:csrf_pay,
             vouch:id_voucher,
@@ -411,21 +412,16 @@ $(document).ready(function() {
         dataType: "json",
         data:datos,
         success: function(data) {
+        window.open('http://localhost:8000/marketAdm/imprimir/'+id_voucher+'/', 'Imprimir', 'window settings');
 
-        console.log("voucher detail")
 
         }
       });
 
             });
 
-            //console.log(id_voucher);
-
 
         }
-      function imprimir(){
-            
-      }
 
     });
 

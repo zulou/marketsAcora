@@ -33,6 +33,34 @@ class VoucherDetailAdmin(admin.ModelAdmin):
     search_fields = ['id','vouch','price_point','price_water','price_energy']
     list_display = ('id','vouch','price_point','price_water','price_energy')
 
+########################################
+
+
+
+class settings_waterAdmin(admin.ModelAdmin):
+    search_fields = ['id', 'price_water']
+    list_display = ('id', 'price_water')
+
+class settings_electricityAdmin(admin.ModelAdmin):
+    search_fields = ['id', 'price_electricity']
+    list_display = ('id', 'price_electricity')
+
+class water_readingAdmin(admin.ModelAdmin):
+    search_fields = ['id', 'consession','settings_water','service_water_read_old','service_water_read_new']
+    list_display = ('id', 'consession','settings_water','service_water_read_old','service_water_read_new')
+
+class electricity_readingAdmin(admin.ModelAdmin):
+    search_fields = ['id', 'consession', 'settings_electricity', 'service_energy_read_old', 'service_energy_read_new']
+    list_display = ('id', 'consession', 'settings_electricity', 'service_energy_read_old', 'service_energy_read_new')
+
+class invoice_waterAdmin(admin.ModelAdmin):
+    search_fields = ['id', 'water_reading', 'date_pay', 'comments','price_water']
+    list_display = ('id', 'water_reading', 'date_pay', 'comments','price_water')
+
+class invoice_electricityAdmin(admin.ModelAdmin):
+    search_fields = ['id', 'electricity_reading', 'date_pay', 'comments', 'price_energy']
+    list_display = ('id', 'electricity_reading', 'date_pay', 'comments', 'price_energy')
+
 
 admin.site.register(models.clients,ClientsAdmin)
 admin.site.register(models.markets,MarketsAdmin)
@@ -42,5 +70,13 @@ admin.site.register(models.concession,ConcessionAdmin)
 admin.site.register(models.services,ServicesAdmin)
 admin.site.register(models.voucher,VoucherAdmin)
 admin.site.register(models.voucherDetail,VoucherDetailAdmin)
+
+admin.site.register(models.settings_electricity,settings_electricityAdmin)
+admin.site.register(models.settings_water,settings_waterAdmin)
+admin.site.register(models.water_reading,water_readingAdmin)
+admin.site.register(models.electricity_reading,electricity_readingAdmin)
+admin.site.register(models.invoice_water,invoice_waterAdmin)
+admin.site.register(models.invoice_electricity,invoice_electricityAdmin)
+
 
 

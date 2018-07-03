@@ -23,9 +23,18 @@ def last_id_voucher(request):
     return HttpResponse(id.id)
 
 def imprimir(request,id):
-
     #voucher= voucher.objects.filter(id=id).first()
     voucher_data = voucher.objects.filter(id=id).first()
-    data = {'voucher':voucher_data}
+    voucher_detail=voucherDetail.objects.filter(vouch=id).first()
+    data = {'voucher':voucher_data,'voucherDetail':voucher_detail}
     return render(request, 'imprimir.html', data)
 
+def water_reading(request):
+    conseciones = concession.objects.all()
+    data = {'conseciones': conseciones}
+    return render(request, 'app/list-water-reading.html', data)
+
+def electricity_reading(request):
+    conseciones = concession.objects.all()
+    data = {'conseciones': conseciones}
+    return render(request, 'app/list-electricity-reading.html', data)

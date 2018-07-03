@@ -62,7 +62,40 @@ class MerkSectSerializer(serializers.ModelSerializer):
         models=models.sections
         fields = ('id', 'name','markets')
 
+###
+
+class Settings_waterSerializer(serializers.ModelSerializer):
+    class Meta:
+        models=models.settings_water
+        fields = ('id', 'price_water')
+
+class Settings_electricitySerializer(serializers.ModelSerializer):
+    class Meta:
+        models=models.settings_electricity
+        fields=('id','price_electricity')
+
+class Water_readingSerializer(serializers.ModelSerializer):
+    consession= serializers.PrimaryKeyRelatedField(many=False, queryset=models.concession.objects.all())
+    class Meta:
+        models=models.water_reading
+        fields=('id','consession','settings_water','service_water_read_old','service_water_read_new ')
+
+class Electricity_readingSerializer(serializers.ModelSerializer):
+    consession = serializers.PrimaryKeyRelatedField(many=False, queryset=models.concession.objects.all())
+    class Meta:
+        models = models.electricity_reading
+        fields = ('id', 'consession', 'settings_electricity', 'service_energy_read_old', 'service_energy_read_new')
 
 
+class Invoice_waterSerializer(serializers.ModelSerializer):
+    water_reading= serializers.PrimaryKeyRelatedField(many=False, queryset=models.water_reading.objects.all())
+    class Meta:
+        models = models.invoice_water
+        fields = ('id', 'water_reading', 'date_pay', 'comments', 'price_water')
 
-    
+
+class Invoice_electricitySerializer(serializers.ModelSerializer):
+    electricity_reading = serializers.PrimaryKeyRelatedField(many=False, queryset=models.electricity_reading.objects.all())
+    class Meta:
+        models = models.invoice_electricity
+        fields = ('id', 'electricity_reading', 'date_pay', 'comments', 'price_energy')
