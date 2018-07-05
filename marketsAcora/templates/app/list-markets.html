@@ -71,7 +71,7 @@
                     <th>s/.Precio</th>
                     <th>Inicio concesión</th>
                     <th>Fin concesión</th>
-                    <th>Monto</th>
+                    <th>Detalle de concesión</th>s
                     <th>EDITAR</th>
                     <th>VER</th>
                 </tr>
@@ -103,7 +103,7 @@
     id_date_start=$("#inicio").val();
     id_date_end=$("#fin").val();
     type_sale=parseInt($("#tipo_pago").val());
-    price_monthly=parseInt($("#tipo_pago").val());
+    price_monthly=parseInt($("#costo").val());
 
     var test=$('#form_persona').serializeArray();
     var csrf=$('#form_persona input[name=csrfmiddlewaretoken]').val();
@@ -262,7 +262,7 @@ var dataset = [];
 
             {%for conse in conseciones %}
 
-            dataset.push({id:"{{conse.id}}",dni:"{{conse.clients.dni}}",name:"{{conse.clients.firstname}} {{conse.clients.lastname}}- cel:{{conse.clients.cellphone}} ",sections:"{{conse.points.sections}}",points:"{{conse.points.point_code}}",price:"{{conse.price_monthly}}",date_consession_start:"{{conse.date_consession_start}}",date_consession_end:"{{conse.date_consession_end}}",paid_days_concession:"{%if conse.paid_days_concession > 0%} <p style='color:green'>El cliente pago s/. {{ conse.paid_days_concession }} </p>{%else%} <p style='color:red'>El cliente aun no pago </P>{%endif%}"});
+            dataset.push({id:"{{conse.id}}",dni:"{{conse.clients.dni}}",name:"{{conse.clients.firstname}} {{conse.clients.lastname}}- cel:{{conse.clients.cellphone}} ",sections:"{{conse.points.sections}}",points:"{{conse.points.point_code}}",price:"{{conse.price_monthly}}",date_consession_start:"{{conse.date_consession_start}}",date_consession_end:"{{conse.date_consession_end}}",paid_days_concession:"{%if conse.paid_days_concession > 0%} <p style='color:green'>El cliente pago s/. {{ conse.paid_days_concession }}, {{conse.total_days_concession}}, El Alquiler es por {{ conse.total_days_concession  }}dias  </p>{%else%} <p style='color:red'>El Alquiler es por {{ conse.total_days_concession }} dias </P>{%endif%}"});
 
             {%endfor%}
         {% else %}
